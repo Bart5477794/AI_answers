@@ -1,0 +1,61 @@
+import torch
+
+# # different types of tensors (multidimenional arrays)
+# x = torch.empty(2,3,4)
+# x = torch.rand(2,2)
+# x = torch.zeros(2,2)
+# x = torch.ones(2,2)
+
+# # change datatype
+# x = torch.rand(2, 2, dtype=torch.float16)
+# print(x.dtype)
+# look at the size
+# print(x.size())
+
+# # operations
+# x = torch.rand(2, 2)
+# y = torch.rand(2, 2)
+# z = x + y
+# z = torch.add(x, y) # does the same thing
+# y.add_(x) # adds x to y but changes y with it
+# z = x - y
+# z = torch.sub(x, y) # note this is all elementwise, thus per element
+# z = x * y
+# z = torch.mul(x, y)  # note this is all elementwise, thus per element
+# z = x / y
+# z = torch.div(x, y)  # note this is all elementwise, thus per element
+# print(z)
+
+# # slicing operations just like numpy
+# x = torch.rand(3, 5)
+# print(x)
+# print(x[1, :])
+# # if your tensor has one element, you can use the item() command to get the value
+# print(x[1, 1].item())
+
+# # reshaping
+# x = torch.rand(4, 4)
+# y = x.view(16)
+# y = x.view(-1, 8)  # -1 makes the program choose how to resize
+
+# # gradients calculations used in backpropagation
+# # this bolean will keep track of the gradients so we can pull easily later on
+# x = torch.randn(3, requires_grad=True)
+# print(x)
+# y = x + 2
+# z = y*y*2
+# z = z.mean()
+# z.backward() # will calculate the gradients
+# print(x.grad) # summons the gradients with respect to x
+
+# # when working with gradients and machine learning, do not forget to set 
+# # your gradients back to zero, or they wil sum up and go crazy really quickly
+weights = torch.ones(4, requires_grad=True)
+
+for epoch in range(3):
+    model_output = (weights*3).sum()
+    model_output.backward()
+    print(weights.grad)
+    weights.grad.zero_()
+
+    

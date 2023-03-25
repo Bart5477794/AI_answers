@@ -1,0 +1,9 @@
+librosa
+matplotlib
+numpy
+pandas
+scikit-learn
+sounddevice
+soundfile
+torch
+wget
